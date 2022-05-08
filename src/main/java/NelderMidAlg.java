@@ -69,7 +69,10 @@ public class NelderMidAlg {
             U.setX4(C.getX4() + alpha*(C.getX4() - X[n].getX4()));
         }
 
-
+        if((restrictions != null)&&(U.getX1()> restrictions.getX1Max() || U.getX1()< restrictions.getX1Min() || U.getX2()> restrictions.getX2Max() || U.getX2()< restrictions.getX2Min())){
+            U.setX1(restrictions.getX1Max());
+            U.setX2(restrictions.getX2Max());
+        }
         QCountU = Q.countQ(U);
 
 
@@ -93,6 +96,10 @@ public class NelderMidAlg {
             U.setX4(C.getX4() + betta*(U.getX4() - C.getX4()));
         }
 
+        if((restrictions != null)&&(V.getX1()> restrictions.getX1Max() || V.getX1()< restrictions.getX1Min() || V.getX2()> restrictions.getX2Max() || V.getX2()< restrictions.getX2Min())){
+            V.setX1(restrictions.getX1Max());
+            V.setX2(restrictions.getX2Max());
+        }
 
         QCountV = Q.countQ(V);
 
@@ -124,10 +131,11 @@ public class NelderMidAlg {
             }
         }
 
-
-
+        if((restrictions != null)&&(W.getX1()> restrictions.getX1Max() || W.getX1()< restrictions.getX1Min() || W.getX2()> restrictions.getX2Max() || W.getX2()< restrictions.getX2Min())){
+            W.setX1(restrictions.getX1Max());
+            W.setX2(restrictions.getX2Max());
+        }
         QCountW = Q.countQ(W);
-
 
         if(QCountW < Math.min(Q.countQ(X[n]), Q.countQ(U))){
             return W;
